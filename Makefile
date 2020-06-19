@@ -7,7 +7,7 @@ CXX                   = g++
 
 EXTRA_CFLAGS			= -g -fdata-sections -ffunction-sections
 
-EXTRA_LDFLAGS			= -lSDL2 -lSDL2_image
+EXTRA_LDFLAGS			= 
 
 INCLUDE					= -I./include -I./src
 
