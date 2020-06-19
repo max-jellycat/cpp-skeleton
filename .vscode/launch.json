@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "configurations": [
+      {
+        "name": "C++ Replay",
+        "type": "lldb",
+        "request": "custom",
+        "targetCreateCommands": ["target create -c ${workspaceFolder}/core"],
+        "reverseDebugging": true
+      },
+        {
+            "name": "C++ Launch",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceRoot}/bin/skeleton",
+            "preLaunchTask": "build",
+            "internalConsoleOptions": "openOnSessionStart",
+            "relativePathBase": "${workspaceRoot}/src",
+            "reverseDebugging": true,
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "osx": {
+                "MIMode": "lldb"
+            }
+        }
+    ]
+}
