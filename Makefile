@@ -1,54 +1,11 @@
-#### PROJECT SETTINGS ####
-# The name of the executable to be created
-BIN_NAME := skeleton
-# Compiler used
-CXX ?= g++
-# Extension of source files used in the project
-SRC_EXT = cpp
-# Path to the source directory, relative to the makefile
-SRC_PATH = ./src
-# Path to the external includes, relative to the makefile
-INCLUDE_PATH = ./include
-# Path to the external libraries, relative to the makefile
-LIBS_PATH = ./lib
-# Space-separated pkg-config libraries used by this project
-LIBS =
-# General compiler flags
-COMPILE_FLAGS = -std=c++14 -Wall -Wextra -g
-# Additional release-specific flags
-RCOMPILE_FLAGS = -D NDEBUG
-# Additional debug-specific flags
-DCOMPILE_FLAGS = -D DEBUG
-# Add additional include paths
-INCLUDES = -I$(SRC_PATH) -I$(INCLUDE_PATH)
-# General linker settings
-LINK_FLAGS = -L$(LIBS_PATH)
-# Additional release-specific linker settings
-RLINK_FLAGS =
-# Additional debug-specific linker settings
-DLINK_FLAGS =
-# Destination directory, like a jail or mounted system
-DESTDIR = /
-# Install path (bin/ is appended automatically)
-INSTALL_PREFIX = usr/local
-#### END PROJECT SETTINGS ####
+include config.mk
 
-# Optionally you may move the section above to a separate config.mk file, and
-# uncomment the line below
-# include config.mk
-
-# Generally should not need to edit below this line
-
-# Obtains the OS type, either 'Darwin' (OS X) or 'Linux'
 UNAME_S:=$(shell uname -s)
 
-# Function used to check variables. Use on the command line:
 # make print-VARNAME
-# Useful for debugging and adding features
 print-%: ; @echo $*=$($*)
 
 # Shell used in this makefile
-# bash is used for 'echo -en'
 SHELL = /bin/bash
 # Clear built-in rules
 .SUFFIXES:
@@ -106,6 +63,7 @@ OBJECTS = $(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
 DEPS = $(OBJECTS:.o=.d)
 
 # Macros for timing compilation
+# @TODO Fix on OSX
 ifeq ($(UNAME_S),Darwin)
 	CUR_TIME = awk 'BEGIN{srand(); print srand()}'
 	TIME_FILE = $(dir $@).$(notdir $@)_time
