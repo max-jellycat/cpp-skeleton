@@ -3,6 +3,7 @@
         {
             "name": "Mac",
             "includePath": [
+                "${workspaceFolder}/src/",
                 "${workspaceFolder}/include/",
                 "/usr/local/include"
             ],

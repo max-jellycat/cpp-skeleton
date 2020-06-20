@@ -5,14 +5,13 @@
         "name": "C++ Replay",
         "type": "lldb",
         "request": "custom",
-        "targetCreateCommands": ["target create -c ${workspaceFolder}/core"],
         "reverseDebugging": true
       },
         {
             "name": "C++ Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceRoot}/bin/skeleton",
+            "program": "${workspaceRoot}/bin/debug/skeleton",
             "preLaunchTask": "build",
             "internalConsoleOptions": "openOnSessionStart",
             "relativePathBase": "${workspaceRoot}/src",

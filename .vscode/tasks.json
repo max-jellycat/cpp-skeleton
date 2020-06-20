@@ -6,7 +6,7 @@
     {
       "label": "build",
       "type": "shell",
-      "command": "make",
+      "command": "make release",
       "presentation": {
         "echo": true,
         "reveal": "always",
@@ -21,9 +21,21 @@
       }
     },
     {
-      "label": "build and run",
+      "label": "debug",
       "type": "shell",
-      "command": "make && bin/skeleton",
+      "command": "make debug",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "debug:build-and-run",
+      "type": "shell",
+      "command": "make debug && ./bin/debug/skeleton",
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -35,7 +47,7 @@
     {
       "label": "clean",
       "type": "shell",
-      "command": "make distclean",
+      "command": "make clean",
       "options": {
         "cwd": "${workspaceFolder}"
       },
