@@ -158,6 +158,16 @@ clean:
 	@$(RM) -r build
 	@$(RM) -r bin
 
+.PHONY: run_debug
+run_debug:
+	@echo "Running $(BIN_NAME) in debug mode"
+	@./$(BIN_NAME)
+
+.PHONY: run_release
+run_release:
+	@echo "Running $(BIN_NAME) in release mode"
+	@./$(BIN_NAME)
+
 # Main rule, checks the executable and symlinks to the output
 all: $(BIN_PATH)/$(BIN_NAME)
 	@echo "Making symlink: $(BIN_NAME) -> $<"

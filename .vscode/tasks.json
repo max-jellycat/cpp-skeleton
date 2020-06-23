@@ -35,7 +35,19 @@
     {
       "label": "debug:build-and-run",
       "type": "shell",
-      "command": "make debug && ./bin/debug/skeleton",
+      "command": "make debug && make run_debug",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "release:build-and-run",
+      "type": "shell",
+      "command": "make release && make run_release",
       "options": {
         "cwd": "${workspaceFolder}"
       },
