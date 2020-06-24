@@ -2,6 +2,15 @@ include config.mk
 
 UNAME_S:=$(shell uname -s)
 
+# Compiler used
+ifeq ($(UNAME_S), Darwin)
+	CXX := g++
+else ifeq ($(UNAME_S), Linux)
+	CXX := g++
+else
+	CXX := mingw32-g++
+endif
+
 # make print-VARNAME
 print-%: ; @echo $*=$($*)
 
@@ -25,6 +34,12 @@ export V := false
 export CMD_PREFIX := @
 ifeq ($(V),true)
 	CMD_PREFIX :=
+endif
+
+# Linux special flags for SDL
+ifeq ($(UNAME_S),)
+	COMPILE_FLAGS += $(shell sdl2-config --cflags)
+	LINK_FLAGS += $(shell sdl2-config --libs)
 endif
 
 # Combine compiler and linker flags
@@ -153,7 +168,7 @@ uninstall:
 .PHONY: clean
 clean:
 	@echo "Deleting $(BIN_NAME) symlink"
-	@$(RM) $(BIN_NAME)
+	@$(RM) $(BIN_NAME) $(BIN_NAME).exe
 	@echo "Deleting directories"
 	@$(RM) -r build
 	@$(RM) -r bin
